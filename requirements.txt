@@ -1,0 +1,2 @@
+wheel
+django==4.0.6
