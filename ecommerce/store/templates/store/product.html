@@ -5,14 +5,26 @@
 {% block content %}
 
 
-<h2>{{ product.name }}</h2>
-<p>{{ product.description }}</p>
-<p>Price: {{ product.price }}</p>
-<p>Shipping Time: {{ product.eta }}</p>
-<p>Qauntity: {{ product.quantity }}</p>
-<p>Available: {{ product.available }}</p>
-<button>Add to cart</button>
-<img src="{{ product.image.url }}" alt="product-img" srcset=""/>
+<div class="container">
+    <div class="row">
+        <div class="col col-sm col-md col-lg col-xl-4">    
+            
+            <img src="{{ product.image.url }}" alt="product-img" srcset=""/>
+        </div>
+        <div class="col">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Price: {{ product.price }}</p>
+            <p>Shipping Time: {{ product.eta }}</p>
+            <p>Qauntity: {{ product.quantity }}</p>
+            <p>Available: {{ product.available }}</p>
+            <div>
+                <button class="btn btn-primary">Add to cart</button>
+                <button class="btn btn-secondary">Buy now</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

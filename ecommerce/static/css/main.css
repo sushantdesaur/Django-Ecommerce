@@ -6,6 +6,48 @@
 /* ====== Margins Bottom ====== */
 /*  .25rem = 4px, .5 = 8px, .75 = 12px*/
 /* ====== z index  ======= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 0 3rem 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.938rem;
+  background-color: hsl(248deg, 60%, 99%);
+  color: hsl(248deg, 8%, 45%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: hsl(248deg, 8%, 15%);
+  font-weight: 600;
+}
+
 ul {
   list-style: none;
+}
+
+footer {
+  position: -webkit-sticky;
+  position: sticky;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.main {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }/*# sourceMappingURL=main.css.map */
