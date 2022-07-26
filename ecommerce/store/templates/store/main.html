@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 {% load static %}
 <html>
     <head>
@@ -11,42 +8,97 @@
         <title>E-Commerce {% block title %}{% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Unicons -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link rel="stylesheet" href={% static 'css/main.css' %}>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <header>
-            <nav>
-                <ul>
-                    <h1>E-Commerce</h1>
-                    <li>
-                        <a href="{% url 'store' %}" target="_self" rel="noopener noreferrer">Store</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'cart' %}" target="_self" rel="noopener noreferrer">Cart</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'account_logout' %}" target="_self" rel="noopener noreferrer">Logout</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'account_login' %}" target="_self" rel="noopener noreferrer">Login</a>
-                    </li>
-                    
-                    {% endif %}
-                    
-                    
-                </ul>
-            </nav>
-        </header>
-        <main>
-            {% block content %}
-            {% endblock content %}
-        <main>
 
-        <script src="" async defer></script>
+        <header class="header" id="header">
+      <nav class="nav container">
+        <a href="{% url 'store' %}" class="nav__logo">E-Commerce Store</a>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list grid">
+            <li class="nav__item">
+              <a href="{% url 'store' %}" class="nav__link">
+                <i class="uil uil-store-alt nav__icon"></i> Store
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'products' %}" class="nav__link">
+                <i class="uil uil-shopping-basket nav__icon"></i> Products
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="{% url 'cart' %}" class="nav__link">
+                <i class="uil uil-shopping-cart nav__icon"></i> Cart
+              </a>
+            </li>
+             
+            {% if user.is_authenticated %}
+            <li class="nav__item">
+                <a href="#" class="nav__link">
+                    <i class="uil uil-user nav__icon"></i> Account Settings</a>
+            </li class="nav__item">
+            <li class="nav__item">
+                <a href="{% url 'account_logout' %}" class="nav__link">
+                    <i class="uil uil-sign-out-alt nav__icon"></i> Logout</a>
+            </li class="nav__item">
+            {% else %}
+            <li class="nav__item">
+                <a href="{% url 'account_login' %}" class="nav__link">
+                    <i class="uil uil-sign-in-alt nav__icon"></i> Login</a>
+            </li class="nav__item">
+            {% endif %}
+          </ul>
+        
+        </div>
+      </nav>
+    </header>
+    <main class="main" id="main">
+        {% block content %}
+        {% endblock content %}
+    <main>
+    <!-- ================ FOOTER ================ -->
+    <footer class="footer">
+      <div class="footer__bg">
+        <div class="footer__container container grid">
+          <div>
+            <h1 class="footer__title">E-Commerce Store</h1>
+            <span class="footer__subtitle">Online Store</span>
+          </div>
+
+          <ul class="footer__link">
+            <li>
+              <a href="#" class="footer__link">Products</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link"></a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">Contact</a>
+            </li>
+          </ul>
+
+          <div class="footer__socials">
+            <a href="#" target="_blank"  class="footer__social">
+              <i class="uil uil-facebook-f"></i>
+            </a>
+
+            <a href="#" target="_blank"  class="footer__social">
+              <i class="uil uil-instagram"></i>
+            </a>
+
+            <a href="#" target="_blank"  class="footer__social">
+              <i class="uil uil-twitter-alt"></i>
+            </a>
+          </div>
+        </div>
+
+        <p class="footer__copy">&#169; E-Commerce Store. All right reserved</p>
+      </div>
+    </footer>
+    <script src="" async defer></script>
     </body>
 </html>

@@ -5,15 +5,12 @@
 
 <h1>Store</h1>
 
-{% for product in products %}
+<section class="promotion section" id="banner">
+    <h3>Promotions</h3>
+    <img src="" alt="promotion-image" srcset="">
+</section>
 
-<h2>{{ product.name }}</h2>
-<p>{{ product.description }}</p>
-<p>{{ product.price }}</p>
-<img src={{ product.image.url }} alt="product-image"/>
-<a href="{% url 'product' product.pk %}">View</a>
-
-{% endfor %}
-
-
+<section class="trending" id="trending">
+    <h3>Trending</h3>
+</section>
 {% endblock content %}
