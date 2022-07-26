@@ -1,4 +1,7 @@
 wheel
+autopep8
 django==4.0.6
 django-allauth
 Pillow
+django-phonenumber-field[phonenumbers]
+django-environ==0.9.0
