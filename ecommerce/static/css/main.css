@@ -31,11 +31,9 @@ ul {
 }
 
 footer {
-  position: -webkit-sticky;
-  position: sticky;
-  height: 100px;
   bottom: 0;
   width: 100%;
+  padding-top: 3rem;
 }
 
 a {

@@ -1,7 +1,50 @@
-{% extends 'store/main.html' %}
+{% extends 'store/main.html' %} 
 
 {% block content %}
 
-<h1>Cart</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">Shopping Cart</h5>
+        <div class="card-body">
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Product Title</td>
+                  <td>1</td>
+                  <td>5.99</td>
+                  <td>5.99</td>
+                  <td><i class="uil uil-trash-alt"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h5 class="card-title"></h5>
+            <p class="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+            <a href="{% url 'products' %}" class="btn btn-dark">Continue Shopping</a>
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
