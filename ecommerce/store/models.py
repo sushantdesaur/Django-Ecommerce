@@ -41,7 +41,7 @@ class Order(models.Model):
 	@property
 	def shipping(self):
 		shipping = False
-		order_items = self.order_item_set.all()
+		order_items = self.orderitem_set.all()
 		for i in order_items:
 			if i.product.digital == False:
 				shipping = True
@@ -49,13 +49,13 @@ class Order(models.Model):
 
 	@property
 	def get_cart_total(self):
-		order_items = self.order_item_set.all()
+		order_items = self.orderitem_set.all()
 		total = sum([item.get_total for item in order_items])
 		return total
 
 	@property
 	def get_cart_items(self):
-		order_items = self.order_item_set.all()
+		order_items = self.orderitem_set.all()
 		total = sum([item.quantity for item in order_items])
 		return total
 
