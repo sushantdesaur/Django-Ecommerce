@@ -1,4 +1,10 @@
-{% extends 'store/main.html' %} {% block content %}
+{% extends 'store/main.html' %}
+
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
 
 <div class="container">
   <div class="row">
@@ -13,12 +19,8 @@
                 <h5 class="card-title">Shipping Address</h5>
                 <form action="" method="POST">
                   {% csrf_token %}
-                  {{form.as_p}}
+                  {{form|crispy}}
                 </form>
-                {% comment %} <p class="card-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p> {% endcomment %}
                 <a href="#" class="btn btn-primary">Continue</a>
               </div>
             </div>
@@ -27,11 +29,18 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Order Summary</h5>
-                <p class="card-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <div>
+                    <ul>
+                      {% for item in items  %}
+                      <li>Product: {{item.product.name}}</li>
+                      <li>Quantity: {{item.quantity}}</li>
+                      <li>Price: {{item.product.price}}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <h5>Items: {{order.get_cart_items}}</h5>
+                  <h5>Total: {{order.get_cart_total}}</h5>
+                <a href="{% url 'products' %}" class="btn btn-primary">Continue Shopping</a>
               </div>
             </div>
           </div>

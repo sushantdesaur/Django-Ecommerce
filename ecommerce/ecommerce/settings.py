@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
     
+    # Crispy Bootstrap 5
+    "crispy_forms",
+    "crispy_bootstrap5",
+    
     #allauth
     'allauth',
     'allauth.account',
@@ -186,3 +190,8 @@ print(MEDIA_ROOT)
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

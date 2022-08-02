@@ -1,7 +1,9 @@
 wheel
 autopep8
 django==4.0.6
+crispy-bootstrap5
 django-allauth
 Pillow
 django-phonenumber-field[phonenumbers]
+Babel
 django-environ==0.9.0
