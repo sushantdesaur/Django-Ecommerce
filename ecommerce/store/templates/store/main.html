@@ -56,8 +56,8 @@ const csrftoken = getCookie('csrftoken');
 
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'cart' %}">
-                      <i class="uil uil-shopping-cart nav__icon"></i> Cart
-                    </a>
+                      <i class="uil uil-shopping-cart nav__icon"></i> Cart {{cart_items}}
+                    </a>  
                   </li>
                   {% if user.is_authenticated %}
                   <li class="nav-item">
