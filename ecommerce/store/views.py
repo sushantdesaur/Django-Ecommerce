@@ -1,5 +1,10 @@
+from enum import Flag
+import re
 from django.views import View
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+import json
+
 
 # import your models here
 from .models import *
@@ -74,3 +79,13 @@ def checkout (request):
         'form': form,
     }
     return render(request, template_name='store/checkout.html', context=context)
+
+
+def update_item(request):
+    data = json.loads(request.body)
+    
+    product_id = data['productId']
+    action = data['action']
+    print('Product Id:', product_id)
+    print('Action:', action)
+    return JsonResponse('Item was added', safe=False)
