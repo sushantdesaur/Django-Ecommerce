@@ -85,6 +85,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 
+                'store.context_processors.main',
+                
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
             ],
