@@ -11,6 +11,7 @@ class Product(models.Model):
     price = models.DecimalField(null=False, blank=False, max_digits=15, decimal_places=2)
     image = models.ImageField(null=True, blank=True, upload_to='images/', default='images/default_product.png')
     quantity = models.SmallIntegerField(null=False, blank=False, default=0)
+    digital = models.BooleanField(default=False, null=True, blank=True)
     eta = models.DurationField(null=False, blank=False)
     available = models.BooleanField(null=False, blank=False)
     updated = models.DateTimeField(auto_now=True)

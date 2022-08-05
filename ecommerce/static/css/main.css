@@ -48,4 +48,14 @@ img {
 .main {
   margin-top: 6rem;
   margin-bottom: 6rem;
+}
+
+.quantity {
+  display: inline-block;
+}
+
+.change-quantity {
+  width: 12px;
+  cursor: pointer;
+  transition: 0.1s;
 }/*# sourceMappingURL=main.css.map */

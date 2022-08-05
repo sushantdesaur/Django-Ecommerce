@@ -1,5 +1,6 @@
 {% extends 'store/main.html' %} 
 
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -29,7 +30,15 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>{{item.product.name}}</td>
-                  <td>{{item.quantity}}</td>
+                  <td>
+                     <div class="quantity">
+                      {{item.quantity}} 
+                      <div class="quantity">
+                        <i data-product={{ item.product.id }} data-action="add" class="uil uil-plus change-quantity update-cart"></i> 
+                        <i data-product={{ item.product.id }} data-action="remove"class="uil uil-minus change-quantity update-cart"></i>
+                      </div>
+                     </div>
+                  </td>
                   <td>{{item.product.price}}</td>
                   <td>{{item.get_total}}</td>
                   <td><i class="uil uil-trash-alt"></i></td>
@@ -47,5 +56,7 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 {% endblock content %}

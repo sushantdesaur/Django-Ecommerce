@@ -19,14 +19,21 @@
             <p>Qauntity: {{ product.quantity }}</p>
             <p>Available: {{ product.available }}</p>
             <div>
-                <button class="btn btn-primary">Add to cart</button>
-                <button class="btn btn-secondary">Buy now</button>
+                <button class="btn btn-primary">Buy now</button>
+                <button 
+                        type="button" 
+                        data-product="{{ product.id }}"
+                        data-action="add" 
+                        class="btn btn-secondary add-btn update-cart"
+                        >
+                        Add to cart
+                    </button>
             </div>
         </div>
     </div>
 </div>
 
 
-
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 {% endblock content %}

@@ -16,12 +16,16 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Shipping Address</h5>
-                <form action="" method="POST">
-                  {% csrf_token %}
-                  {{form|crispy}}
-                </form>
-                <a href="#" class="btn btn-primary">Continue</a>
+                {% if order.shipping == False %}
+                  Digital Items
+                {% else %}
+                  <h5 class="card-title">Shipping Address</h5>
+                  <form action="" method="POST">
+                      {% csrf_token %}
+                      {{form|crispy}}
+                  </form>
+                  <a href="#" class="btn btn-primary">Continue</a>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -50,5 +54,7 @@
     </div>
   </div>
 </div>
+
+
 
 {% endblock content %}

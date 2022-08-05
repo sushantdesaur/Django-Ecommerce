@@ -101,6 +101,16 @@ img {
     margin-bottom: 6rem;
 }
 
+.quantity {
+    display: inline-block;
+}
+
+.change-quantity {
+    width: 12px;
+    cursor: pointer;
+ 
+    transition: .1s;
+}
 // .header {
 //     width: 100%;
 //     position: fixed;
