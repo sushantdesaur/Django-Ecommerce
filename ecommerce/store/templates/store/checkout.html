@@ -1,41 +1,43 @@
 {% extends 'store/main.html' %}
-
-{% load crispy_forms_tags %}
-
-
-
-{% block content %}
+ {% load crispy_forms_tags %} 
+ {% block content %}
 
 <div class="container">
   <div class="row">
     <div class="col">
-        <div class="card">
-      <h5 class="card-header">Checkout</h5>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                {% if order.shipping == False %}
-                  Digital Items
-                {% else %}
+      <div class="card">
+        <h5 class="card-header">Checkout</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  {% if order.shipping == False %} 
+				  Digital Items 
+				  {% else %}
                   <h5 class="card-title">Shipping Address</h5>
-                  <form action="" method="POST">
-                      {% csrf_token %}
-                      {{form|crispy}}
+                  <form action="" method="POST" id="form">
+                    {% csrf_token %}
+					{{form|crispy}}
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      id="form-button"
+                    >
+                      Make Payment
+                    </button>
                   </form>
-                  <a href="#" class="btn btn-primary">Continue</a>
-                {% endif %}
+                  {% endif %}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Order Summary</h5>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Order Summary</h5>
                   <div>
                     <ul>
-                      {% for item in items  %}
+                      {% for item in items %}
                       <li>Product: {{item.product.name}}</li>
                       <li>Quantity: {{item.quantity}}</li>
                       <li>Price: {{item.product.price}}</li>
@@ -44,17 +46,30 @@
                   </div>
                   <h5>Items: {{order.get_cart_items}}</h5>
                   <h5>Total: {{order.get_cart_total}}</h5>
-                <a href="{% url 'products' %}" class="btn btn-primary">Continue Shopping</a>
+                  <a href="{% url 'cart' %}" class="btn btn-primary"
+                    >Back to cart</a
+                  >
+                </div>
               </div>
             </div>
           </div>
+		  <div class="row mt-4" hidden>
+			<small>Make Payment</small> 
+		  </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </div>
 
+<!-- <script>
+  var form = document.getElementById("form");
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("Form submitted");
+    document.getElementById("form-button").classList("hidden");
+  });
+</script> -->
 
 {% endblock content %}

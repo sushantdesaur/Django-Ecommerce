@@ -1,8 +1,8 @@
 from django.views import View
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 import json
-from django.template import RequestContext
+import datetime
 
 
 # import your models here
@@ -67,7 +67,7 @@ def checkout (request):
         form = ShippingAddressForm(request.POST or None)
         if form.is_valid():
             form.save(commit=True)
-            return redirect("home")
+            return redirect('process_order')
         else:
             form = ShippingAddressForm()
     context = {
@@ -102,3 +102,19 @@ def update_item(request):
         order_item.delete()
         
     return JsonResponse('Item was added', safe=False)
+
+
+def process_order(request):
+    transaction_id = datetime.datetime.now().timestamp()  
+    
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        # total = order.get_cart_total
+        order.transaction_id = transaction_id
+        order.complete = True
+        order.save()
+    else:
+        print("user is not logged in")
+    
+    return HttpResponse("Make payment")

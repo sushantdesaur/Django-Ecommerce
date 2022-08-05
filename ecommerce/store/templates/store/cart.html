@@ -31,13 +31,11 @@
                   <th scope="row">1</th>
                   <td>{{item.product.name}}</td>
                   <td>
-                     <div class="quantity">
-                      {{item.quantity}} 
                       <div class="quantity">
                         <i data-product={{ item.product.id }} data-action="add" class="uil uil-plus change-quantity update-cart"></i> 
+                        {{item.quantity}} 
                         <i data-product={{ item.product.id }} data-action="remove"class="uil uil-minus change-quantity update-cart"></i>
                       </div>
-                     </div>
                   </td>
                   <td>{{item.product.price}}</td>
                   <td>{{item.get_total}}</td>
@@ -48,7 +46,7 @@
             </table>
           </div>
           <div>
-            <a href="{% url 'products' %}" class="btn btn-dark">Continue Shopping</a>
+            <a href="{% url 'cart' %}" class="btn btn-dark">Continue Shopping</a>
             <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
           </div>
         </div>
