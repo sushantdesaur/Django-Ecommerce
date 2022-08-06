@@ -4,11 +4,15 @@ from django.http import HttpResponse, JsonResponse
 import json
 import datetime
 
+# import your utils here
+from .utils import  cart_data
 
 # import your models here
 from .models import *
 
-from .forms import ShippingAddressForm
+# import your forms here
+from .forms import ShippingAddressForm, CustomerForm
+
 
 # Create your views here.
 
@@ -40,27 +44,33 @@ class ProductDetailView(View):
 
 
 def cart (request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0,  'shipping': False}
+    data = cart_data(request)
+    
+    cart_items = data['cart_items']
+    order = data['order']
+    items = data['items']
+      
     context = {
         'items': items,
         'order': order,
+        'cart_items': cart_items,
     }
     return render(request, template_name='store/cart.html', context=context)
 
 def checkout (request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0,  'shipping': False}
+    data = cart_data(request)
+
+    cart_items = data['cart_items']
+    order = data['order']
+    items = data['items']
+    
+    customer_form = CustomerForm()
+    if request.method == 'POST':
+        customer_form = CustomerForm(request.POST or None)
+        if customer_form.is_valid():
+            customer_form.save(commit=True)
+        else:
+            customer_form = CustomerForm()
     
     form = ShippingAddressForm()
     if request.method == 'POST':
@@ -74,6 +84,8 @@ def checkout (request):
         'order': order,
         'items': items,
         'form': form,
+        'cart_items': cart_items,
+        'customer_form': customer_form,
     }
     return render(request, template_name='store/checkout.html', context=context)
 
