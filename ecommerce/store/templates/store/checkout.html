@@ -21,13 +21,19 @@
                       <button
                         type="submit"
                         class="btn btn-primary"
-                        id="customer_button"
                       >
-                        Continue
+                        Save
                       </button>
                     </form>
                   </div>
                   
+                  <button
+                        type="submit"
+                        class="btn btn-secondary"
+                        id="continue"
+                      >
+                        Continue
+                  </button>
                   {% endif %}
                   
                   {% if order.shipping == False %} 
@@ -35,7 +41,7 @@
                   {% else %}
                   <div id="form" style="visibility: hidden;">
                     <h5 class="card-title">Shipping Address</h5>
-                    <form action="" method="POST">
+                    <form action="#" method="POST">
                     {% csrf_token %}
                     {{form|crispy}}
                     <button

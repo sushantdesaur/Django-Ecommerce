@@ -1,7 +1,7 @@
-const btn = document.getElementById("customer_button");
+const btn = document.getElementById("continue");
 
-customer_button.addEventListener("click", (e) => {
-    e.preventDefault()
+btn.addEventListener("click", () => {
+
   const form = document.getElementById("form");
 
   if (form.style.visibility === "hidden") {
