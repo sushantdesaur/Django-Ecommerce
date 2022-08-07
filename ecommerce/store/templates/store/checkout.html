@@ -71,15 +71,12 @@
                 placeholder="Zip code.."
               />
             </div>
-            <div id="div_id_phone_number" class="form-field mb-2">
-              <label for="id_phone_number_0" class="form-label requiredField mb-2">
-                Phone number<span class="asteriskField">*</span>
-              </label>
+            <div class="form-field mb-2">
               <select
-                name="phone_number_0"
-                class="phoneprefixselect form-control mb-2"
+                name="country"
+                class="form-control mb-2"
                 required=""
-                id="id_phone_number_0"
+                id="country"
               >
                 <option value="">---------</option>
                 <option value="AF">Afghanistan +93</option>
@@ -328,24 +325,23 @@
                 <option value="ZW">Zimbabwe +263</option>
                 <option value="001">world +979</option>
                 <option value="AX">Åland Islands +358</option></select
-              ><input
+              >
+            </div>
+            <div class="form-field mb-2">
+              <label for="phone_number" class="form-label mb-2">
+                Phone number<span class="asteriskField">*</span>
+              </label>
+              <!--  --><input
                 type="text"
-                name="phone_number_1"
+                name="phone_number"
                 class="textinput textInput form-control"
                 maxlength="128"
                 required=""
-                id="id_phone_number_1"
+                id="phone_number"
                 placeholder="Phone Number.."
               />
             </div>
-            {% comment %} <div class="form-field mb-2">
-              <input
-                class="form-control"
-                type="text"
-                name="country"
-                placeholder="Country..."
-              />
-            </div> {% endcomment %}
+            
           </div>
 
           <hr />
@@ -361,8 +357,8 @@
       <br />
       <div class="box-element hidden" id="payment-info">
         <small>Paypal Options</small>
-        <!--<button id="make-payment">Make payment</button>-->
-        <div id="paypal-button-container"></div>
+        <button id="make-payment">Make payment</button>
+        {% comment %} <div id="paypal-button-container"></div> {% endcomment %}
       </div>
     </div>
 
@@ -455,11 +451,11 @@
     document.getElementById("payment-info").classList.remove("hidden");
   });
 
-  /*
+ 
 	    document.getElementById('make-payment').addEventListener('click', function(e){
 	    	submitFormData()
 	    })
-	*/
+
 
   function submitFormData() {
     console.log("Payment button clicked");
@@ -472,20 +468,22 @@
 
     var shippingInfo = {
       address: null,
+      landmark: null,
       city: null,
       state: null,
       zipcode: null,
-      phone_number_0: null,
       phone_number_1: null,
+      country: null,
     };
 
     if (shipping != "False") {
       shippingInfo.address = form.address.value;
+      shippingInfo.landmark = form.landmark.value;
       shippingInfo.city = form.city.value;
       shippingInfo.state = form.state.value;
       shippingInfo.zipcode = form.zipcode.value;
-      shippingInfo.phone_number_0 = form.phone_number_0.value;
-      shippingInfo.phone_number_1 = form.phone_number_1.value;
+      shippingInfo.phone_number = form.phone_number.value;
+      shippingInfo.country = form.country.value;
     }
 
     if (user == "AnonymousUser") {

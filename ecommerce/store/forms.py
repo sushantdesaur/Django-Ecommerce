@@ -7,8 +7,7 @@ from .models import ShippingAddress, Customer
 class ShippingAddressForm(ModelForm):
     class Meta:
         model = ShippingAddress
-        fields = ('address', 'landmark', 'city',
-                  'state', 'zipcode', 'phone_number')
+        fields = ('address', 'landmark', 'city', 'state', 'zipcode', 'phone_number')
         widgets = {
             'phone_number': PhoneNumberPrefixWidget(initial="IN"),
         }

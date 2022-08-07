@@ -50,8 +50,7 @@ def cookie_cart(request):
 def cart_data(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cart_items = order.get_cart_items
     else:
@@ -85,11 +84,10 @@ def guest_order(request, data):
         )
 
 	for item in items:
-		product = Product.objects.get(id=item['id'])
+		product = Product.objects.get(id=item['product']['id'])
 		order_item = OrderItem.objects.create(
 			product=product,
 			order=order,
-			quantity=(item['quantity'] if item['quantity'] > 0 else -1 *
-			          item['quantity']),  # negative quantity = freebies
+			quantity=(item['quantity'] if item['quantity'] > 0 else -1 * item['quantity']),  # negative quantity = freebies
 		)
 	return customer, order

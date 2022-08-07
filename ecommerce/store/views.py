@@ -64,28 +64,10 @@ def checkout (request):
     order = data['order']
     items = data['items']
     
-    customer_form = CustomerForm()
-    if request.method == 'POST':
-        customer_form = CustomerForm(request.POST or None)
-        if customer_form.is_valid():
-            customer_form.save(commit=True)
-        else:
-            customer_form = CustomerForm()
-    
-    form = ShippingAddressForm()
-    if request.method == 'POST':
-        form = ShippingAddressForm(request.POST or None)
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('process_order')
-        else:
-            form = ShippingAddressForm()
     context = {
         'order': order,
         'items': items,
-        'form': form,
         'cart_items': cart_items,
-        'customer_form': customer_form,
     }
     return render(request, template_name='store/checkout.html', context=context)
 
@@ -138,10 +120,12 @@ def process_order(request):
             customer=customer,
             order=order,
             address=data['shipping']['address'],
+            landmark=data['shipping']['landmark'],
             city=data['shipping']['city'],
             state=data['shipping']['state'],
             zipcode=data['shipping']['zipcode'],
-            phone_number=data['shipping']['phone_number_0', 'phone_number_1'],
+            country=data['shipping']['country'],
+            phone_number=data['shipping']['phone_number'],
         )
 
     return JsonResponse('Payment submitted..', safe=False)

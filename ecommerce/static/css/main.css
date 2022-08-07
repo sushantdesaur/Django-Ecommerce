@@ -58,4 +58,8 @@ img {
   width: 12px;
   cursor: pointer;
   transition: 0.1s;
+}
+
+.hidden {
+  display: none !important;
 }/*# sourceMappingURL=main.css.map */
