@@ -5,7 +5,7 @@ import json
 import datetime
 
 # import your utils here
-from .utils import  cart_data
+from .utils import cart_data, guest_order
 
 # import your models here
 from .models import *
@@ -117,16 +117,31 @@ def update_item(request):
 
 
 def process_order(request):
-    transaction_id = datetime.datetime.now().timestamp()  
-    
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        # total = order.get_cart_total
-        order.transaction_id = transaction_id
-        order.complete = True
-        order.save()
     else:
-        print("user is not logged in")
-    
-    return HttpResponse("Make payment")
+        customer, order = guest_order(request, data)
+
+    total = float(data['form']['total'])
+    order.transaction_id = transaction_id
+
+    if total == order.get_cart_total:
+        order.complete = True
+    order.save()
+
+    if order.shipping == True:
+        ShippingAddress.objects.create(
+            customer=customer,
+            order=order,
+            address=data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zipcode=data['shipping']['zipcode'],
+            phone_number=data['shipping']['phone_number_0', 'phone_number_1'],
+        )
+
+    return JsonResponse('Payment submitted..', safe=False)
