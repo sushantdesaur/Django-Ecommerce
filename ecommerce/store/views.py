@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.views import View
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
@@ -129,3 +130,13 @@ def process_order(request):
         )
 
     return JsonResponse('Payment submitted..', safe=False)
+
+
+def orders(request):
+    customer = request.user.customer
+    orders = Order.objects.filter(customer=customer)
+    
+    context = {'orders': orders}
+    
+    return render(request, template_name='store/orders.html', context=context)
+    
